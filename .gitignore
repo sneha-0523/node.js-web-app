@@ -145,3 +145,12 @@ vite.config.ts.timestamp-*
 
 #mochawesomereport
 mochawesome-report
+
+#Terraform
+.terraform*
+*.tfstate*
+*.tfvars
+
+# key
+*.key
+*.pem
