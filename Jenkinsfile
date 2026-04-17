@@ -9,7 +9,6 @@ REPO_NAME = "nodejs-web-app"
 
 stages {
 
-```
 stage("Set Up") {
   steps {
     echo "Setup stage"
@@ -69,7 +68,6 @@ stage("Cleanup") {
     sh "docker system prune -f"
   }
 }
-```
 
 }
 }
