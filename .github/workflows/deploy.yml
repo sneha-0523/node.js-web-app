@@ -47,14 +47,18 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker stop my-app || true
-            docker rm my-app || true
+              export AWS_REGION=us-east-1
+              export ECR_REPOSITORY=nodejs-web-app
+              export AWS_ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }}
 
-            aws ecr get-login-password --region $AWS_REGION | docker login \
-              --username AWS \
-              --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com
+              docker stop my-app || true
+              docker rm my-app || true
 
-            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+              aws ecr get-login-password --region $AWS_REGION | docker login \
+                 --username AWS \
+                 --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
 
-            docker run -d -p 8000:8000 --name my-app \
-              ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+              docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:latest
+
+              docker run -d -p 8000:8000 --name my-app \
+                 ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:latest
