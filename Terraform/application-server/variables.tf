@@ -13,3 +13,11 @@ variable "subnet_id" {
 variable "security_groups" {
   type = list(string)
 }
+
+variable "iam_instance_profile" {
+  type = string
+}
+
+variable "repository_url" {
+  type = string
+}
