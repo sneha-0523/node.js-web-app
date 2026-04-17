@@ -1,5 +1,5 @@
 resource "aws_secretsmanager_secret" "nodejs-web-app" {
-  name = "nodejs-web-app-v3"
+  name = "nodejs-web-app-v4"
 }
 
 resource "aws_secretsmanager_secret_version" "nodejs-web-app" {

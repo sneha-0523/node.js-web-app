@@ -38,6 +38,8 @@ resource "aws_subnet" "subnet-public-jenkins" {
   vpc_id = aws_vpc.nodejs-web-app.id
   availability_zone = "us-east-1a"
 
+  map_public_ip_on_launch = true
+
   tags = {
     Name = "Jenkins Subnet"
   }
@@ -49,6 +51,8 @@ resource "aws_subnet" "subnet-public-web-app" {
   cidr_block = "10.0.3.0/24"
   vpc_id = aws_vpc.nodejs-web-app.id
   availability_zone = "us-east-1a"
+  
+  map_public_ip_on_launch = true 
 
   tags = {
     Name = "nodejs Web App Subnet"
