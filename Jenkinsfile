@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  environment {
+    AWS_REGION = "us-east-1"
+    REPO_NAME = "nodejs-web-app"
+  }
+
   stages {
 
     stage("Set Up") {
@@ -10,30 +15,49 @@ pipeline {
       }
     }
 
-    stage("Build Docker Image") {
+    stage("Login to ECR") {
       steps {
         script {
           sh """
-          docker build -t my-app .
+          aws ecr get-login-password --region $AWS_REGION | \
+          docker login --username AWS --password-stdin <YOUR_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com
           """
         }
       }
     }
 
-    stage("Run Container") {
+    stage("Build Image") {
       steps {
         script {
           sh """
-          docker run -d -p 8000:8000 my-app || true
+          docker build -t $REPO_NAME .
+          docker tag $REPO_NAME:latest 869329820328.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
           """
         }
       }
     }
 
-    stage("Test") {
+    stage("Push to ECR") {
       steps {
-        echo "Running basic tests"
-        sh "echo Tests passed"
+        script {
+          sh """
+          docker push 869329820328.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
+          """
+        }
+      }
+    }
+
+    stage("Deploy Container") {
+      steps {
+        script {
+          sh """
+          docker stop my-app || true
+          docker rm my-app || true
+
+          docker run -d -p 8000:8000 --name my-app \
+          869329820328.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
+          """
+        }
       }
     }
 
