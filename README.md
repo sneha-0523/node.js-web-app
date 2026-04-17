@@ -1,8 +1,8 @@
-# 🚀 End-to-End CI/CD Pipeline with AWS, Terraform, Docker & GitHub Actions
+# End-to-End CI/CD Pipeline with AWS, Terraform, Docker & GitHub Actions
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project demonstrates a **production-style DevOps pipeline** where infrastructure provisioning and application deployment are fully automated using modern cloud-native tools.
 
@@ -22,7 +22,7 @@ The system integrates Infrastructure as Code (IaC), containerization, and CI/CD 
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/379af4b2-d840-4def-aee3-d6818d6d7e55" />
 
@@ -37,7 +37,7 @@ Developer → GitHub → GitHub Actions → Docker Build → AWS ECR → EC2 Dep
 
 ---
 
-## 🧠 Architecture Decisions
+##  Architecture Decisions
 
 ### 🔹 Why GitHub Actions over Jenkins?
 
@@ -131,7 +131,7 @@ node.js-web-app/
 ```
 
 
-## ⚙️ Infrastructure (Terraform)
+##  Infrastructure (Terraform)
 
 <img width="1797" height="762" alt="image" src="https://github.com/user-attachments/assets/191e4e6d-ad44-4da9-a3ee-0e28997d9799" />
 
@@ -152,7 +152,7 @@ node.js-web-app/
 
 ---
 
-## 🔐 Security Considerations
+## Security Considerations
 
 * IAM roles used instead of hardcoded credentials
 * Secrets managed via GitHub Secrets
@@ -163,7 +163,7 @@ node.js-web-app/
 
 ---
 
-## 🔄 CI/CD Pipeline
+## CI/CD Pipeline
 
 <img width="1792" height="661" alt="image" src="https://github.com/user-attachments/assets/f5792fa1-df84-4759-baad-6081a8c3d21d" />
 
@@ -192,7 +192,7 @@ docker push <ECR_URL>
 
 ---
 
-## ☁️ Deployment on EC2
+## Deployment on EC2
 
 <img width="1838" height="745" alt="image" src="https://github.com/user-attachments/assets/681b9afe-e32a-4930-ad16-dbf87cbf20d2" />
 
@@ -208,7 +208,7 @@ docker run -d -p 8000:8000 --name my-app <ECR_URL>
 
 ---
 
-## 🔔 Slack Integration
+##  Slack Integration
 
 * Build Success Alerts
 * Build Failure Alerts
@@ -216,7 +216,7 @@ docker run -d -p 8000:8000 --name my-app <ECR_URL>
 
 ---
 
-## 🔑 GitHub Secrets Used
+##  GitHub Secrets Used
 
 | Secret Name           | Description     |
 | --------------------- | --------------- |
@@ -229,7 +229,7 @@ docker run -d -p 8000:8000 --name my-app <ECR_URL>
 
 ---
 
-## 🚨 Engineering Challenges & Debugging Insights
+## Engineering Challenges & Debugging Insights
 
 ---
 
@@ -311,7 +311,7 @@ aws ecr get-login-password | docker login
 
 ---
 
-## 🎯 Key Skills Demonstrated
+## Key Skills Demonstrated
 
 * Infrastructure as Code (Terraform)
 * CI/CD Pipeline Design
@@ -322,9 +322,9 @@ aws ecr get-login-password | docker login
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 Sneha Varshney
-DevSecOps Enthusiast | AI Aspirant
+DevSecOps Enthusiast 
 
 ---
